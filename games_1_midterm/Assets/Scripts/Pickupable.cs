@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pickupable : MonoBehaviour {
 
     public GameObject puzzleItem;
-    public GameObject tempParent;
+    public GameObject player;
     public Transform guide;  
     
     public Material newSkybox;
@@ -21,19 +21,16 @@ public class Pickupable : MonoBehaviour {
 
     // Update is called once per frame
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Z)) {
-            puzzleItem.GetComponent<Rigidbody>().useGravity = false;
-            puzzleItem.GetComponent<Rigidbody>().isKinematic = true;
-            puzzleItem.transform.position = guide.transform.position;
-            puzzleItem.transform.parent = tempParent.transform;
-            isBeingHeld = true;
-        }
+        //if the object is being held, the player can  drop it with x or the down arrow 
         if(isBeingHeld && (Input.GetKeyDown(KeyCode.X) || (Input.GetKeyDown(KeyCode.DownArrow)))) {
-            puzzleItem.GetComponent<Rigidbody>().useGravity = true;
-            puzzleItem.GetComponent<Rigidbody>().isKinematic = false;
-            puzzleItem.transform.parent = null;
-            isBeingHeld = false;
+                player.GetComponent<PlayerMovement>().stopHoldingSomething();
+                puzzleItem.GetComponent<Rigidbody>().useGravity = true;
+                puzzleItem.GetComponent<Rigidbody>().isKinematic = false;
+                puzzleItem.transform.parent = null;
+                isBeingHeld = false;
+
         }
+       
     }
 
     void OnTriggerEnter(Collider other) {
@@ -43,14 +40,22 @@ public class Pickupable : MonoBehaviour {
             Destroy(other.gameObject);
             Debug.Log("solved");
         }
-        // if(other.gameObject.tag == ("Player")){
-        //     if(Input.GetKeyDown(KeyCode.Z)) {
-        //         puzzleItem.GetComponent<Rigidbody>().useGravity = false;
-        //         puzzleItem.GetComponent<Rigidbody>().isKinematic = true;
-        //         puzzleItem.transform.position = guide.transform.position;
-        //         puzzleItem.transform.parent = tempParent.transform;
-        //         isBeingHeld = true;
-        //     }
-        // }
     }
+
+    void OnTriggerStay(Collider other) {
+        //if the player is touching the object but not holding it
+        if (other.gameObject.tag == ("Player") && !isBeingHeld) {
+            //tell the player they can pick it up
+             Debug.Log("Pick up with X");
+            if(Input.GetKeyDown(KeyCode.Z)) {
+                puzzleItem.GetComponent<Rigidbody>().useGravity = false;
+                puzzleItem.GetComponent<Rigidbody>().isKinematic = true;
+                puzzleItem.transform.position = guide.transform.position;
+                puzzleItem.transform.parent = player.transform;
+                player.GetComponent<PlayerMovement>().nowHoldingSomething();
+                isBeingHeld = true;
+            }
+        }
+    }
+    
 }

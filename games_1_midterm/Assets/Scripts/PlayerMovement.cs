@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpForce = 1.0f;
     public float interactionRadius = 2.0f;
     private bool isGrounded = false;
+    private bool isHoldingObject = false;
 
 
     public Rigidbody playerRB;
@@ -35,6 +36,10 @@ public class PlayerMovement : MonoBehaviour {
              playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
              isGrounded = false;
         }
+        if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            //playerRB.
+        }
+
         if(playerRB.position.y <= -9){
             Debug.Log("you have died");
             SceneManager.LoadScene("GameStart");
@@ -43,5 +48,12 @@ public class PlayerMovement : MonoBehaviour {
     }
     void Update(){
 
+    }
+
+    public void nowHoldingSomething(){
+        isHoldingObject = true;
+    }
+    public void stopHoldingSomething(){
+        isHoldingObject = false;
     }
 }
