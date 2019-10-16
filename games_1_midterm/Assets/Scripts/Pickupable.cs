@@ -23,7 +23,7 @@ public class Pickupable : MonoBehaviour {
     void Update(){
         //if the object is being held, the player can  drop it with x or the down arrow 
         if(isBeingHeld && (Input.GetKeyDown(KeyCode.X) || (Input.GetKeyDown(KeyCode.DownArrow)))) {
-                player.GetComponent<PlayerMovement>().stopHoldingSomething();
+                player.GetComponent<PlayerControl>().stopHoldingSomething();
                 puzzleItem.GetComponent<Rigidbody>().useGravity = true;
                 puzzleItem.GetComponent<Rigidbody>().isKinematic = false;
                 puzzleItem.transform.parent = null;
@@ -44,7 +44,7 @@ public class Pickupable : MonoBehaviour {
 
     void OnTriggerExit(Collider other){
         if (other.gameObject.tag == ("Player")) {
-            player.GetComponent<PlayerMovement>().hideCenterText();
+            player.GetComponent<PlayerControl>().hideCenterText();
         }
 
     }
@@ -53,13 +53,13 @@ public class Pickupable : MonoBehaviour {
         //if the player is touching the object but not holding it
         if (other.gameObject.tag == ("Player") && !isBeingHeld) {
             //tell the player they can pick it up
-            player.GetComponent<PlayerMovement>().displayCenterText("Pick up with Z");
+            player.GetComponent<PlayerControl>().displayCenterText("Pick up with Z");
             if(Input.GetKeyDown(KeyCode.Z)) {
                 puzzleItem.GetComponent<Rigidbody>().useGravity = false;
                 puzzleItem.GetComponent<Rigidbody>().isKinematic = true;
                 puzzleItem.transform.position = guide.transform.position;
                 puzzleItem.transform.parent = player.transform;
-                player.GetComponent<PlayerMovement>().nowHoldingSomething();
+                player.GetComponent<PlayerControl>().nowHoldingSomething();
                 isBeingHeld = true;
             }
         }

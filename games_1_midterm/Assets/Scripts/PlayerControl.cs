@@ -6,7 +6,7 @@ using TMPro;
 
 
 namespace winterYarn{} 
-public class PlayerControl : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 
     public TextMeshProUGUI instruction; 
     public float moveSpeed = 1.0f;
