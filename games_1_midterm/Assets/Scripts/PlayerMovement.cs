@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 namespace winterYarn{} 
 public class PlayerMovement : MonoBehaviour {
 
+    public TextMeshProUGUI instruction; 
     public float moveSpeed = 1.0f;
     public float jumpForce = 1.0f;
-    public float interactionRadius = 2.0f;
     private bool isGrounded = false;
     private bool isHoldingObject = false;
+
 
 
     public Rigidbody playerRB;
     // Start is called before the first frame update
     void Start() {
         playerRB = GetComponent<Rigidbody>();
+        instruction.gameObject.SetActive(false);
         
     }
 
@@ -50,8 +53,18 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
+    public void displayCenterText(string toDisplay){
+        instruction.text = "Press z to pick up";
+        instruction.gameObject.SetActive(true);
+    }
+
+    public void hideCenterText(){
+        instruction.gameObject.SetActive(false);
+    }
+
     public void nowHoldingSomething(){
         isHoldingObject = true;
+        instruction.gameObject.SetActive(false);
     }
     public void stopHoldingSomething(){
         isHoldingObject = false;

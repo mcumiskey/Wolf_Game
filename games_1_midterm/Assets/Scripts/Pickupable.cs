@@ -42,11 +42,18 @@ public class Pickupable : MonoBehaviour {
         }
     }
 
+    void OnTriggerExit(Collider other){
+        if (other.gameObject.tag == ("Player")) {
+            player.GetComponent<PlayerMovement>().hideCenterText();
+        }
+
+    }
+
     void OnTriggerStay(Collider other) {
         //if the player is touching the object but not holding it
         if (other.gameObject.tag == ("Player") && !isBeingHeld) {
             //tell the player they can pick it up
-             Debug.Log("Pick up with X");
+            player.GetComponent<PlayerMovement>().displayCenterText("Pick up with Z");
             if(Input.GetKeyDown(KeyCode.Z)) {
                 puzzleItem.GetComponent<Rigidbody>().useGravity = false;
                 puzzleItem.GetComponent<Rigidbody>().isKinematic = true;
