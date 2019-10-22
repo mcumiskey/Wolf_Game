@@ -1,7 +1,49 @@
 title: Start
 tags: 
 colorID: 0
-position: 540,260
+position: 507,111
 ---
-cube: hello wolf!
+cube: Hello wolf!
+
+[[How can you talk if you are a cube?|qCube]]
+[[What is this orb for?|qOrb]]
+===
+title: qOrb
+tags: 
+colorID: 1
+position: 355,378
+---
+Cube: It's a key, to a puzzle
+
+[[What puzzle?|qPuzzle]]
+[[What do I need to do?|qPuzzle]]
+[[Oh|end]]
+===
+title: qCube
+tags: 
+colorID: 6
+position: 668,386
+---
+Cube: I'm a placeholder, a thing of the universe
+
+[[What?|end]]
+[[I don't understand|end]]
+[[Huh.|end]]
+===
+title: qPuzzle
+tags: 
+colorID: 2
+position: 349,611
+---
+Cube: Don't you think it's a bit too bright out? 
+Cube: Bring it to the capsule over there. 
+[[end]]
+===
+title: end
+tags: 
+colorID: 3
+position: 553,855
+---
+Cube: Anyway, the music was made by Amanda Brewer.
+Cube: She's rad
 ===
