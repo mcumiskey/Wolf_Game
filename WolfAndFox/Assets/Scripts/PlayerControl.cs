@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void displayCenterText(string toDisplay){
-        instruction.text = "Press z to pick up";
+        instruction.text = toDisplay;
         instruction.gameObject.SetActive(true);
     }
 
