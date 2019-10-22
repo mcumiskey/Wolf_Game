@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         playerRB = GetComponent<Rigidbody>();
+        instruction.text = " ";
         instruction.gameObject.SetActive(false);
         
     }
@@ -54,7 +55,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void displayCenterText(string toDisplay){
-        instruction.text = toDisplay;
+        instruction.text = "Press Z to interact";
+        Debug.Log("display " +toDisplay);
         instruction.gameObject.SetActive(true);
     }
 

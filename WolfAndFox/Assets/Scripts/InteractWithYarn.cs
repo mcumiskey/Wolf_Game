@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//usign Yarn
+//using the right namespace
 namespace Yarn.Unity.Example {
 
 public class InteractWithYarn : MonoBehaviour {
@@ -29,5 +29,12 @@ public class InteractWithYarn : MonoBehaviour {
                 }
             }
         }
+
+        void OnTriggerExit(Collider other){
+        if (other.gameObject.tag == ("Player")) {
+            player.GetComponent<PlayerControl>().hideCenterText();
+        }
+
+    }
     }
 }

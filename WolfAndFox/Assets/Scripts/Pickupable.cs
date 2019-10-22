@@ -22,14 +22,14 @@ public class Pickupable : MonoBehaviour {
     // Update is called once per frame
     void Update(){
         //if the object is being held, the player can  drop it with x or the down arrow 
-        if(isBeingHeld && (Input.GetKeyDown(KeyCode.X) || (Input.GetKeyDown(KeyCode.DownArrow)))) {
-                player.GetComponent<PlayerControl>().stopHoldingSomething();
-                puzzleItem.GetComponent<Rigidbody>().useGravity = true;
-                puzzleItem.GetComponent<Rigidbody>().isKinematic = false;
-                puzzleItem.transform.parent = null;
-                isBeingHeld = false;
+        // if(isBeingHeld && (Input.GetKeyDown(KeyCode.X) || (Input.GetKeyDown(KeyCode.DownArrow)))) {
+        //         player.GetComponent<PlayerControl>().stopHoldingSomething();
+        //         puzzleItem.GetComponent<Rigidbody>().useGravity = true;
+        //         puzzleItem.GetComponent<Rigidbody>().isKinematic = false;
+        //         puzzleItem.transform.parent = null;
+        //         isBeingHeld = false;
 
-        }
+        // }
        
     }
 
@@ -59,6 +59,7 @@ public class Pickupable : MonoBehaviour {
                 puzzleItem.GetComponent<Rigidbody>().isKinematic = true;
                 puzzleItem.transform.position = guide.transform.position;
                 puzzleItem.transform.parent = player.transform;
+                player.GetComponent<PlayerControl>().displayCenterText("");
                 player.GetComponent<PlayerControl>().nowHoldingSomething();
                 isBeingHeld = true;
             }
